@@ -442,14 +442,14 @@ List<ListChangeRecord<E>> _createInitialSplices<E>(
 // insert incorrectly, because those items will be shifted.
 List<ListChangeRecord<E>> projectListSplices<E>(
     List<E> list, List<ListChangeRecord<E>> records,
-    [Equality<E>? equality]) {
+    {Equality<E>? equality, bool notifyWhenEqual = false}) {
   equality ??= DefaultEquality<E>();
   if (records.length <= 1) return records;
   final splices = <ListChangeRecord<E>>[];
   final initialSplices = _createInitialSplices(list, records);
   for (final splice in initialSplices) {
     if (splice.addedCount == 1 && splice.removed.length == 1) {
-      if (splice.removed[0] != list[splice.index]) {
+      if (notifyWhenEqual || splice.removed[0] != list[splice.index]) {
         splices.add(splice);
       }
       continue;

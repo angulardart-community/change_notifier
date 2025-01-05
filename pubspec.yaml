@@ -1,5 +1,5 @@
 name: change_notifier
-version: 0.27.0
+version: 0.28.0
 description: Support for marking objects as observable
 homepage: https://github.com/angulardart-community/change_notifier
 environment:
