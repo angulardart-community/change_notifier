@@ -120,6 +120,21 @@ class ObservableList<E> extends ListBase<E>
   }
 
   @override
+  bool operator ==(Object other) {
+    if (other is ObservableList<E>) {
+      return _list == other._list;
+    } else if (other is List<E>) {
+      return _list == other;
+    }
+    return false;
+  }
+
+  @override
+  int get hashCode {
+    return _list.hashCode;
+  }
+
+  @override
   E operator [](int index) => _list[index];
 
   @override

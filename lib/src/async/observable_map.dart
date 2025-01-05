@@ -109,6 +109,21 @@ class ObservableMap<K, V>
   bool containsKey(Object? key) => _map.containsKey(key);
 
   @override
+  bool operator ==(Object other) {
+    if (other is ObservableMap<K, V>) {
+      return _map == other._map;
+    } else if (other is Map<K, V>) {
+      return _map == other;
+    }
+    return false;
+  }
+
+  @override
+  int get hashCode {
+    return _map.hashCode;
+  }
+
+  @override
   V? operator [](Object? key) => _map[key];
 
   @override
